@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main Card */
+.card {
+    width: 320px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Search Bar */
+.search {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search input {
+    width: 75%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.search button {
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    background: white;
+}
+
+/* Weather Icon */
+.weather-icon {
+    width: 100px;
+    margin: 20px 0;
+}
+
+/* Temperature */
+h1 {
+    font-size: 42px;
+    font-weight: bold;
+}
+
+/* City Name */
+h2 {
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+/* Details Section */
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Each Box */
+.col {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px;
+    border-radius: 12px;
+    width: 45%;
+}
+
+/* Text inside boxes */
+.col p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.col p:last-child {
+    font-size: 12px;
+    opacity: 0.8;
+}
