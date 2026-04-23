@@ -20,6 +20,7 @@ It fetches real-time weather data using an API and displays temperature, humidit
 - Weather API
 
 ## 📸 Preview
+![App Screenshot](weatherappscreenshot.png)
 
 
 ## 📌 Future Improvements
