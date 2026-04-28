@@ -1,60 +1,77 @@
+// 🔍 key support 
+document.getElementById("city").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        getWeather();
+    }
+});
+
 async function getWeather() {
 
     let city = document.getElementById("city").value;
 
     if (city === "") {
-        alert("Enter city name!");
+        alert("Enter city name");
         return;
     }
 
-    let apiKey = "bbcb1370b699f158cbe693274ccac664"; 
+    let apiKey = "bbcb1370b699f158cbe693274ccac664"
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     let response = await fetch(url);
     let data = await response.json();
 
-    if (data.cod === "404") {
-    document.getElementById("temp").innerText = "--°C";
-    document.getElementById("cityName").innerText = "City not found";
-    document.getElementById("humidity").innerText = "--%";
-    document.getElementById("wind").innerText = "-- km/h";
-    return;
-}
+    if (data.cod === 404) {
+        document.getElementById("temp").innerText = "--°C";
+        document.getElementById("cityName").innerText = "City not found";
+        document.getElementById("humidity").innerText = "--%";
+        document.getElementById("wind").innerText = "-- km/h";
+        return;
+    }
 
-    // 🌡️ Data update
-    document.getElementById("temp").innerText = data.main.temp + "°C";
+    document.getElementById("temp").innerText = Math.round(data.main.temp) + "°C";
     document.getElementById("cityName").innerText = data.name;
     document.getElementById("humidity").innerText = data.main.humidity + "%";
     document.getElementById("wind").innerText = data.wind.speed + " km/h";
-    document.getElementById("city").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        getWeather();
-    }
-});
 
-    // 🌤️ ICON CHANGE LOGIC
     let weatherCondition = data.weather[0].main;
+
+    if (weatherCondition === "Clear") {
+        document.body.style.background = "linear-gradient(to right, #fceabb, #f8b500)";
+    } 
+    else if (weatherCondition === "Clouds") {
+        document.body.style.background = "linear-gradient(to right, #bdc3c7, #2c3e50)";
+    } 
+    else if (weatherCondition === "Rain") {
+        document.body.style.background = "linear-gradient(to right, #4b79a1, #283e51)";
+    } 
+    else if (weatherCondition === "Snow") {
+        document.body.style.background = "linear-gradient(to right, #e6dada, #274046)";
+    } 
+    else {
+        document.body.style.background = "linear-gradient(to right, #6dd5ed, #2193b0)";
+    }
+
     let icon = document.querySelector(".weather-icon");
 
     if (weatherCondition === "Clouds") {
         icon.src = "https://cdn-icons-png.flaticon.com/512/414/414825.png";
-    }
+    } 
     else if (weatherCondition === "Rain") {
         icon.src = "https://cdn-icons-png.flaticon.com/512/1163/1163657.png";
-    }
+    } 
     else if (weatherCondition === "Clear") {
         icon.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
-    }
+    } 
     else if (weatherCondition === "Snow") {
         icon.src = "https://cdn-icons-png.flaticon.com/512/642/642102.png";
-    }
+    } 
     else {
         icon.src = "https://cdn-icons-png.flaticon.com/512/414/414825.png";
     }
 }
 
-window.onload = function() {
+window.onload = function () {
     document.getElementById("city").value = "Mumbai";
     getWeather();
 };
